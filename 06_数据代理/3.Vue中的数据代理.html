@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script type="text/javascript" src="../core/vue.js"></script>
+        <title>3.Vue中的数据代理</title>
+    </head>
+    <body>
+        <div id="root">
+            <h2>编程语言：{{name}}</h2>
+            <h2>编程年限：{{age}}</h2>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        const vm = new Vue({
+            el: "#root",
+            data() {
+                return {
+                    name: "java",
+                    age: 35,
+                };
+            },
+        });
+    </script>
+</html>

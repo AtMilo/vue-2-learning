@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- 引入Vue.js -->
+        <script type="text/javascript" src="../core/vue.js"></script>
+        <title>el与data的两种写法</title>
+    </head>
+    <body>
+        <!-- 准备好一个容器 -->
+        <div id="root">
+            <h1>el的两种写法</h1>
+            <h1>你好，{{name}}</h1>
+        </div>
+    <body>
+        <!-- 准备好一个容器 -->
+        <div id="app">
+            <h1>data的两种写法</h1>
+            <h1>你好，{{name}}</h1>
+        </div>
+    </body>
+    <script type="text/javascript">
+        // el的两种写法
+        const vm = new Vue({
+            // 第一种绑定容器的方式
+            // el: "#root",
+            data: {
+                name: "Vue 2 Template",
+            },
+        });
+        console.log(vm);
+        // 指定容器,延迟一秒指定容器
+        setTimeout(() => {
+            // 第二种绑定容器的方式
+            vm.$mount("#root");
+        }, 1000);
+        // data的两种写法
+        new Vue({
+            el: "#app",
+            // data的第一种写法：对象式
+            // data: {},
+            // data的第二种写法：函数式
+            // 在ES6语法中 function 可以省略不写
+            data: function () {
+                console.log("@@@",this);// 此处的this是Vue实例对象
+                return {
+                    name :"函数式data"
+                };
+            },
+        });
+    </script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- 引入Vue.js -->
+        <script type="text/javascript" src="../core/vue.js"></script>
+        <title>回顾Object.defineProperty方法</title>
+    </head>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script type="text/javascript">
+        let number = 18;
+        let person = {
+            name: "Milo",
+            sex: "男",
+        };
+        /* (object,对象名,对象配置项)
+                配置项{
+                    value 值
+                    enumerable 是否被枚举
+                    writable 是否可以被修改
+                    configurable 是否可以被删除（配置）
+                    get:function(){} 在数据被调用时会调用这个方法
+
+                    定义set，get 不允许写 值 和 配置
+                }*/
+        Object.defineProperty(person, "age", {
+            // value: 18,
+            // enumerable: true,
+            // writable: true,
+            // configurable: true,
+            get() {
+                console.log("有人读取了person.age值");
+                return number;
+            },
+            set(value) {
+                console.log("有人修改了person.age值,value");
+                number = value;
+            },
+        });
+
+        console.log(person);
+    </script>
+</html>

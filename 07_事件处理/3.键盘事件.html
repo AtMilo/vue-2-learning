@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- 引入Vue.js -->
+        <script type="text/javascript" src="../core/vue.js"></script>
+        <title>键盘事件</title>
+    </head>
+    <body>
+        <div id="root">
+            <!-- 
+                @keyup 键盘按下监听
+                @keydown 键盘弹起监听
+                enter   => 回车
+                delete  => 删除和退格
+                esc     => 删除
+                tab     => 换行
+                up      => 上
+                down    => 下
+                left    => 左
+                right   => 右
+            -->
+            <input
+                class="input-1"
+                type="text"
+                placeholder="按下回车提交"
+                @keyup.ctrl.k="onKeyUp"
+            />
+        </div>
+    </body>
+
+    <script>
+        Vue.config.productionTip == false; // 阻止 Vue 在启动时生成生产提示
+        // 初始化Vue实例
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                name: "Milo",
+            },
+            methods: {
+                onKeyUp(event) {
+                    if (event.key === "k") {
+                        alert("搜索");
+                    }
+                    console.log(event);
+                },
+            },
+        });
+
+        window.document.body.addEventListener("keydown", (event) => {
+            event.preventDefault();
+            if (event.ctrlKey === true && event.key === "k") {
+                alert("搜索");
+            }
+        });
+    </script>
+</html>

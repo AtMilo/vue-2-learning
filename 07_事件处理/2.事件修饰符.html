@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- 引入Vue.js -->
+        <script type="text/javascript" src="../core/vue.js"></script>
+        <title>事件修饰符</title>
+    </head>
+    <body>
+        <!-- 准备好一个容器 -->
+        <div id="root">
+            <!-- 这里使用了插值语法 -->
+            <h2>欢迎来到{{name}}的Vue2学习页面</h2>
+            <!-- click.prevent prevent ===  event.preventDefault()-->
+            <!-- 
+                prevent 阻止默认时间
+                stop    阻止时间冒泡
+                once    时间只触发一次
+                capture 使用事件的捕获模式
+                self    只有event.target是当前操作时才运行函数
+                passive 事件的默认是行为立即执行，不等待回调函数
+                ================================================================
+                @click      点击事件
+                @scroll     滚动条事件
+                @wheel      滚动轮事件
+                @keyon/keydown      滚动轮事件
+             -->
+            <a href="https://baidu.com" @click.prevent="showInfo1"
+                >点我提示信息</a
+            >
+            <div
+                class="coniantor1"
+                style="background: blueviolet"
+                @click="show()"
+            >
+                <button @click.stop="show()">点我Alert</button>
+            </div>
+            <button @click.once="show()">点我Alert</button>
+        </div>
+    </body>
+    <script type="text/javascript">
+        Vue.config.productionTip == false; // 阻止 Vue 在启动时生成生产提示
+        // 初始化Vue实例
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                name: "Milo",
+            },
+            methods: {
+                // event 接收到的是event对象
+                showInfo1(event) {
+                    // 阻止默认事件的触发 event.preventDefault();
+                    // event.preventDefault();
+                    alert("你好！");
+                },
+                show() {
+                    // 阻止默认事件冒泡 event.stopPropagation();
+                    // event.stopPropagation();
+                    alert("你好,Alert！");
+                },
+            },
+        });
+    </script>
+    <style>
+        * {
+            margin-top: 20px;
+        }
+    </style>
+</html>

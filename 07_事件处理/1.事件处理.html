@@ -15,7 +15,8 @@
             <!-- 标准写法 v-on:click -->
             <button v-on:click="showInfo1">点我提示信息1</button>
             <!-- 简写 @click -->
-            <button @click="showInfo2(66)">点我提示信息2</button>
+            <!-- 如果使用传参占位,event丢失，可以使用$event 占位 -->
+            <button @click="showInfo2(66,$event)">点我提示信息2</button>
         </div>
     </body>
     <script type="text/javascript">
@@ -31,11 +32,29 @@
                 showInfo1(event) {
                     alert("你好！");
                 },
-                showInfo2(number) {
-                    console.log(number);
+                showInfo2(number, event) {
+                    console.log(number, event);
                     alert(`你好！！${number}`);
+
+                    console.log(`点击了x:${event.x}，y:${event.y}`);
                 },
             },
         });
     </script>
+    <style scoped>
+        :root {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
+        body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
+        #root {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
 </html>

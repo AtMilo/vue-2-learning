@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script type="text/javascript" src="../core/vue.js"></script>
+        <title>姓名案例</title>
+    </head>
+    <body>
+        <div id="root">
+            <h1>姓名案例</h1>
+            <h2>方案一</h2>
+            姓：<input type="text" v-model="firstName" />
+            <br />
+            <br />
+            名：<input type="text" v-model="lastName" />
+            <br />
+            <br />
+            姓名：<span>{{firstName}} - {{lastName}}</span>
+            <hr />
+            <h2>方案二</h2>
+            姓：<input type="text" v-model="firstName" />
+            <br />
+            <br />
+            名：<input type="text" v-model="lastName" />
+            <br />
+            <br />
+            姓名：<span>{{fullNameMethod()}}</span>
+            <hr />
+            <h2>方案三</h2>
+            姓：<input type="text" v-model="firstName" />
+            <br />
+            <br />
+            名：<input type="text" v-model="lastName" />
+            <br />
+            <br />
+            姓名：<span>{{fullNameComputed.m}}</span>
+            <hr />
+        </div>
+    </body>
+    <script type="text/javascript">
+        const vm = new Vue({
+            el: "#root",
+            data() {
+                return {
+                    firstName: "",
+                    lastName: "",
+                };
+            },
+            methods: {
+                fullNameMethod() {
+                    return `${this.firstName} - ${this.lastName}`;
+                },
+            },
+            computed: {
+                fullNameComputed: {
+                    set(fullName) {
+                        console.log("fullNameComputed-Setter");
+                        fullName = fullName.split("-");
+                        this.firstName = fullName[0].trim();
+                        this.lastName = fullName[1].trim();
+                    },
+                    get() {
+                        console.log("fullNameComputed-Getter");
+                        return `${this.firstName} - ${this.lastName}`;
+                    },
+                },
+            },
+        });
+    </script>
+</html>

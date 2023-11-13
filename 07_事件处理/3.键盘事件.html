@@ -41,18 +41,18 @@
             methods: {
                 onKeyUp(event) {
                     if (event.key === "k") {
-                        alert("搜索");
+                        alert("搜索inner");
                     }
                     console.log(event);
                 },
             },
         });
 
-        window.document.body.addEventListener("keydown", (event) => {
-            event.preventDefault();
-            if (event.ctrlKey === true && event.key === "k") {
-                alert("搜索");
-            }
-        });
+        // window.document.body.addEventListener("keydown", (event) => {
+        //     event.preventDefault();
+        //     if (event.ctrlKey === true && event.key === "k") {
+        //         alert("搜索");
+        //     }
+        // });
     </script>
 </html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script type="text/javascript" src="../core/vue.js"></script>
+        <title>计算属性的简写</title>
+    </head>
+    <body>
+        <div id="root">
+            <h1>计算属性的简写</h1>
+            姓：<input type="text" v-model="firstName" />
+            <br />
+            <br />
+            名：<input type="text" v-model="lastName" />
+            <br />
+            <br />
+            姓名：<span>{{fullNameComputed}}</span>
+            <hr />
+        </div>
+    </body>
+    <script type="text/javascript">
+        const vm = new Vue({
+            el: "#root",
+            data() {
+                return {
+                    firstName: "",
+                    lastName: "",
+                };
+            },
+            computed: {
+                // 完整写法
+                /* fullName: {
+                    set(fullName) {
+                        console.log("fullName-Setter");
+                        fullName = fullName.split("-");
+                        this.firstName = fullName[0].trim();
+                        this.lastName = fullName[1].trim();
+                    },
+                    get() {
+                        return `${this.firstName} - ${this.lastName}`;
+                    },
+                }, */
+                // 简写（不考虑简写）
+                fullName() {
+                    return `${this.firstName} - ${this.lastName}`;
+                },
+            },
+        });
+    </script>
+</html>

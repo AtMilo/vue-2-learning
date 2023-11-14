@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>监视属性</title>
+        <title>天气案例</title>
         <script type="text/javascript" src="../core/vue.js"></script>
     </head>
     <body>
@@ -30,6 +30,23 @@
                 changeWeather() {
                     this.isHot = !this.isHot;
                 },
+            },
+            watch: {
+                isHot: {
+                    // immediate 初始化时让handler调用一下
+                    immediate: true,
+                    // handler配置
+                    handler(newValue, oldValue) {
+                        console.log(`使用watch:${oldValue}改成了${newValue}`);
+                    },
+                },
+            },
+        });
+
+        // 使用vm 创建监听事件
+        vm.$watch("isHot", {
+            handler(newValue, oldValue) {
+                console.log(`使用vm.$watch:${oldValue}改成了${newValue}`);
             },
         });
     </script>

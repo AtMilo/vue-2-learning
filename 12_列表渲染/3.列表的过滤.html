@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- 引入Vue.js -->
+        <script type="text/javascript" src="../core/vue.js"></script>
+        <title>列表的过滤</title>
+    </head>
+    <body>
+        <div id="root">
+            <h2>姓名列表</h2>
+            <ul>
+                <!-- 
+                    for of      for of遍历的是数组元素值。
+                    for in      遍历的是数组的索引（即键名）
+                -->
+                <input
+                    type="text"
+                    placeholder="请输入名字"
+                    v-model="searchKeyWords"
+                />
+                <hr />
+                <!-- v-for 可以遍历 字符串 对象 数组 指定次数-->
+                <li v-for="(value,index) of filterPersonList" :key="value.id">
+                    {{value.id}}---{{value.name}}---{{value.age}}---{{value.sex}}
+                    <br />
+                </li>
+            </ul>
+        </div>
+    </body>
+    <script type="text/javascript">
+        Vue.config.productionTip == false; // 阻止 Vue 在启动时生成生产提示
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                personList: [
+                    { id: 1, name: "马冬梅", age: 18, sex: "女" },
+                    { id: 2, name: "周冬雨", age: 19, sex: "女" },
+                    { id: 3, name: "周杰伦", age: 20, sex: "男" },
+                    { id: 4, name: "温兆伦", age: 21, sex: "男" },
+                ],
+                searchKeyWords: "",
+            },
+            computed: {
+                /* 
+                js  list.filter 过滤
+                js  string.includes() 字符串是否存在该字符
+                js  string.sort() 排序
+                */
+                filterPersonList() {
+                    return this.personList
+                        .filter((v) => v.name.includes(this.searchKeyWords))
+                        .sort((a, b) => a.id - b.id);
+                },
+            },
+        });
+    </script>
+</html>

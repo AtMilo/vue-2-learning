@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script type="text/javascript" src="../core/vue.js"></script>
+        <title>渲染条件</title>
+    </head>
+    <body>
+        <!--
+            v-show 渲染节点 但是display = none
+            v-if,v-else 不渲染节点
+        -->
+        <div id="root">
+            <button @click="changeShow">点击{{chageBottomText}}</button>
+            <hr />
+            <div
+                style="
+                    size: 20px;
+                    text-align: center;
+                    background-color: yellowgreen;
+                    height: 100px;
+                "
+                v-if="isShow"
+            >
+                V-IF:TEXT
+            </div>
+            <div
+                style="
+                    size: 20px;
+                    text-align: center;
+                    background-color: skyblue;
+                    height: 100px;
+                "
+                v-else="isShow"
+            >
+                V-IF:TEXT
+            </div>
+            <br /><br /><br />
+            <button @click="changeShow">点击{{chageBottomText}}</button>
+            <div
+                style="
+                    size: 20px;
+                    text-align: center;
+                    background-color: yellowgreen;
+                    height: 100px;
+                "
+                v-show="isShow"
+            >
+                V-SHOW:TEXT
+            </div>
+        </div>
+    </body>
+
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data() {
+                return {
+                    isShow: true,
+                };
+            },
+            methods: {
+                changeShow() {
+                    console.log(this.isShow);
+                    this.isShow = !this.isShow;
+                },
+            },
+            computed: {
+                chageBottomText() {
+                    return this.isShow ? "隐藏" : "显示";
+                },
+            },
+        });
+    </script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- 引入Vue.js -->
+        <script type="text/javascript" src="../core/vue.js"></script>
+        <title>列表渲染</title>
+    </head>
+    <body>
+        <div id="root">
+            <span>姓名列表</span>
+            <ul>
+                <!-- 
+                    for of      for of遍历的是数组元素值。
+                    for in      遍历的是数组的索引（即键名）
+                -->
+                <!-- v-for 可以遍历 字符串 对象 数组 指定次数-->
+                <li v-for="(value,index) of personList" :key="value.id">
+                    {{value.id}}---{{value.name}}---{{value.age}}---{{index}}
+                </li>
+            </ul>
+        </div>
+    </body>
+    <script type="text/javascript">
+        Vue.config.productionTip == false; // 阻止 Vue 在启动时生成生产提示
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                personList: [
+                    { id: 1, name: "张三", age: 18 },
+                    { id: 2, name: "李四", age: 19 },
+                    { id: 3, name: "王五", age: 20 },
+                    { id: 4, name: "赵六", age: 21 },
+                ],
+            },
+        });
+    </script>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- 引入Vue.js -->
+        <script type="text/javascript" src="../core/vue.js"></script>
+        <title>样式绑定</title>
+    </head>
+    <body>
+        <!-- 准备好一个容器 -->
+        <div id="root">
+            <div>
+                选项：
+                <input
+                    type="radio"
+                    name="radioGroup"
+                    value="basic"
+                    v-model="checkedValue"
+                />
+                <label for="basic">basic</label>
+                <input
+                    type="radio"
+                    name="radioGroup"
+                    value="normal"
+                    v-model="checkedValue"
+                />
+                <label for="normal">normal</label>
+                <input
+                    type="radio"
+                    name="radioGroup"
+                    value="sad"
+                    v-model="checkedValue"
+                />
+                <label for="sad">sad</label>
+                <input
+                    type="radio"
+                    name="radioGroup"
+                    value="happy"
+                    v-model="checkedValue"
+                />
+                <label for="happy">happy</label>
+            </div>
+            <hr />
+            <div :class="checkedValue" :style="checkedValueStyle">test</div>
+        </div>
+    </body>
+    <style>
+        .basic {
+            background-color: #fff;
+            border: 1px solid #000;
+        }
+        .normal {
+            background-color: rgb(107, 66, 66);
+            border: 10px solid #9ff;
+        }
+        .sad {
+            background-color: #a72d2d;
+            border: 10px solid #ab6;
+        }
+        .happy {
+            background-color: #71b3f0;
+            border: 10px solid #9b1;
+        }
+    </style>
+    <script type="text/javascript">
+        Vue.config.productionTip == false; // 阻止 Vue 在启动时生成生产提示
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                checkedValue: "basic",
+                checkedValueStyle: "text-align:center",
+            },
+        });
+    </script>
+</html>

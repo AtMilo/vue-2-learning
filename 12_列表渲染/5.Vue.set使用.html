@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script type="text/javascript" src="../core/vue.js"></script>
+        <title>Vue.set的使用</title>
+    </head>
+    <body>
+        <div id="root">
+            <h1>个人信息</h1>
+            <input type="text" v-model="address" />
+            <button @click="addAddress()">点击添加地址</button>
+            <h2>姓名：{{student.name}}</h2>
+            <h2>性别：{{student.sex}}</h2>
+            <h2>年龄：{{student.age}}</h2>
+            <h2>地址：{{student.address}}</h2>
+            <ul>
+                <h1>好友列表</h1>
+                <li v-for="friend in student.friends" :key="friend.id">
+                    <h2>
+                        个人信息：{{friend.name}}--{{friend.sex}}--{{friend.age}}
+                    </h2>
+                </li>
+                <hr />
+            </ul>
+        </div>
+    </body>
+    <script type="text/javascript">
+        const vm = new Vue({
+            el: "#root",
+            data() {
+                return {
+                    student: {
+                        name: "milo",
+                        sex: "男",
+                        age: 18,
+                        friends: [
+                            {
+                                id: 1,
+                                name: "lucy",
+                                age: 16,
+                            },
+                            {
+                                id: 2,
+                                name: "mike",
+                                age: 20,
+                            },
+                        ],
+                    },
+                    address: "",
+                };
+            },
+            methods: {
+                addAddress() {
+                    console.log(this.address);
+                    cosnsole.log(this.student.age);
+                    // 这种方式不行，应为添加的属性没有被Vue代理
+                    // this.student.address = this.address;
+                    // Vue.set(target,property,value)
+                    Vue.set(this.student, "address", this.address);
+                },
+            },
+        });
+    </script>
+</html>

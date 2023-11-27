@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script type="text/javascript" src="../core/vue.js"></script>
+        <title>收集表单数据</title>
+    </head>
+    <body>
+        <div id="root">
+            <form @submit.prevent="submit">
+                账号：
+                <input
+                    id="username"
+                    type="text"
+                    v-model="person.username"
+                    spellcheck="请输入账号"
+                />
+                <br /><br />
+                密码：
+                <input
+                    id="password"
+                    type="password"
+                    v-model="person.password"
+                    spellcheck="请输入密码"
+                />
+                <br /><br />
+                年龄：
+                <input type="number" min="0" v-model.number="person.age" />
+                <br /><br />
+                性别：
+                <label for="nan">男</label>
+                <input
+                    id="nan"
+                    name="sex"
+                    type="radio"
+                    value="男"
+                    v-model="person.sex"
+                />
+                <label for="nv">女</label>
+                <input
+                    id="nv"
+                    name="sex"
+                    type="radio"
+                    value="女"
+                    v-model="person.sex"
+                />
+                <br /><br />
+                爱好：
+                <label for="c1">抽烟</label>
+                <input
+                    id="c1"
+                    name="hobby"
+                    type="checkbox"
+                    value="抽烟"
+                    v-model="person.hobby"
+                />
+                <label for="c2">喝酒</label>
+                <input
+                    id="c2"
+                    name="hobby"
+                    type="checkbox"
+                    value="喝酒"
+                    v-model="person.hobby"
+                />
+                <label for="c3">烫头</label>
+                <input
+                    id="c3"
+                    name="hobby"
+                    type="checkbox"
+                    value="烫头"
+                    v-model="person.hobby"
+                />
+                <br /><br />
+                所属地区：
+                <select name="place" id="place" v-model="person.address">
+                    <option value="">请选择地区</option>
+                    <option value="北京">北京</option>
+                    <option value="上海">上海</option>
+                    <option value="杭州">杭州</option>
+                    <option value="苏州">苏州</option>
+                </select>
+                <br /><br />
+                其它信息：
+                <textarea
+                    name="otherInformation"
+                    id="otherInformation"
+                    cols="30"
+                    rows="10"
+                    v-model="person.otherInformation"
+                ></textarea>
+                <br /><br />
+                <button>提交</button>
+            </form>
+            {{person}}
+        </div>
+    </body>
+    <script type="text/javascript">
+        const vm = new Vue({
+            el: "#root",
+            data() {
+                return {
+                    person: {
+                        username: "",
+                        password: "",
+                        sex: "",
+                        age: "",
+                        hobby: [],
+                        otherInformation: "",
+                        address: "",
+                    },
+                };
+            },
+            methods: {
+                submit() {
+                    alert(JSON.stringify(this.person));
+                    console.log(this.person);
+                },
+            },
+            watch: {
+                "person.age"(value) {
+                    if (value < 0) {
+                        this.person.age = 0;
+                    }
+                },
+            },
+        });
+    </script>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script type="text/javascript" src="../core/vue.js"></script>
+        <title>非单文件组件</title>
+    </head>
+    <body>
+        <div id="root">
+            <!-- 编写组件标签 -->
+            <school></school>
+            <hr />
+            <!-- 编写组件标签 -->
+            <student></student>
+            <hr />
+            <hello></hello>
+        </div>
+
+        <div id="root2">
+            <hello></hello>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        // 创建组件
+        const school = Vue.extend({
+            // el:"#root" 创建组件一定不要写 el 配置 因为最终所有组件都要被一个vm管理
+            template: `
+            <div>
+                <h2>学校名称：{{schoolName}}</h2>
+                <h2>学校地址：{{schoolAddress}}</h2>
+            </div>
+            `,
+            data() {
+                return {
+                    schoolName: "浙大",
+                    schoolAddress: "浙江杭州",
+                };
+            },
+        });
+        // 创建组件
+        const student = Vue.extend({
+            // el:"#root" 创建组件一定不要写 el 配置 因为最终所有组件都要被一个vm管理
+            template: `
+            <div>
+                <h2>学生姓名：{{studentName}}</h2>
+                <h2>学生年龄：{{studentAge}}</h2>
+            </div>
+            `,
+            data() {
+                return {
+                    studentName: "张三",
+                    studentAge: 18,
+                };
+            },
+        });
+        // 创建组件
+        const hello = Vue.extend({
+            // el:"#root" 创建组件一定不要写 el 配置 因为最终所有组件都要被一个vm管理
+            template: `
+            <div>
+                <h2>你好啊！{{studentName}}</h2>
+            </div>
+            `,
+            data() {
+                return {
+                    studentName: "Tom",
+                    studentAge: 18,
+                };
+            },
+        });
+
+        // 全局注册
+        Vue.component("hello", hello);
+        // 创建vm
+        const vm = new Vue({
+            el: "#root",
+            // 注册组件（局部注册）
+            components: {
+                school,
+                student,
+            },
+        });
+
+        new Vue({
+            el: "#root2",
+        });
+    </script>
+</html>

@@ -1,28 +1,35 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div>
+        <h1 v-text="msg" ref="title"></h1>
+        <button @click="showDOM()" ref="btn">点我显示DOM</button>
+        <SimpSchool id="school" ref="school"></SimpSchool>
+        <SimpSchool></SimpSchool>
+        <SimpSchool></SimpSchool>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import SimpSchool from "./components/SimpSchool.vue";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+    name: "App",
+    data() {
+        return {
+            msg: "欢迎来到Vue课堂",
+            title: "",
+        };
+    },
+    components: {
+        SimpSchool,
+    },
+    methods: {
+        showDOM() {
+            console.log("@@@", this.$refs.title);
+            console.log("@@@", this.$refs.btn);
+            console.log("@@@", this.$refs.school);
+            console.log("@@@", document.getElementById("school"));
+        },
+    },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
